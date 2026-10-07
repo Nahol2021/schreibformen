@@ -1,6 +1,6 @@
 # Schreibformen
 
-Öffentliche GitHub-Pages-Seite (geplant: `Nahol2021/schreibformen`). Aufbau und Datenformat: README.md.
+Öffentliche GitHub-Pages-Seite https://nahol2021.github.io/schreibformen/ (Repo `Nahol2021/schreibformen`). Aufbau und Datenformat: README.md.
 
 ## Regeln
 - Dauerhaft = Anleitung + allgemeine Übungen einer Form. Pro Klassenarbeit kommt nur ein **Übungstext** dazu.
