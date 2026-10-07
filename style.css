@@ -1,0 +1,173 @@
+/* Layout: schmale Kopfleiste mit Pfad, darunter eine 760px-Lesespalte. Übersicht = Liste der Formen je Sprache,
+   Formseite = Kopf + drei Reiter (Anleitung / Üben / Schreiben). Sprachfarben wie in der Grammatik-Sammlung. */
+:root {
+  --grund: #f3f4f1; --flaeche: #ffffff; --flaeche-2: #f7f8f5; --tinte: #1a1f1c; --tinte-2: #4d5650; --tinte-3: #7c857f;
+  --linie: #dfe3dc; --linie-2: #eceee9;
+  --ok: #1b7a43; --ok-bg: #dcf1e3; --nein: #b72a37; --nein-bg: #fbe1e3; --markiert: #ffe6a6;
+  --sprache: #1d7a3a;
+  --f-titel: "Literata", Georgia, "Times New Roman", serif;
+  --f-text: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --grund: #121614; --flaeche: #1b201d; --flaeche-2: #212723; --tinte: #e6ebe7; --tinte-2: #a8b2ab; --tinte-3: #7d8781;
+  --linie: #2d3530; --linie-2: #252c28;
+  --ok: #5dcc8b; --ok-bg: #16301f; --nein: #ff7d88; --nein-bg: #3b1b20; --markiert: #5a4512;
+  --sprache: #5fd08a; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --grund: #121614; --flaeche: #1b201d; --flaeche-2: #212723; --tinte: #e6ebe7; --tinte-2: #a8b2ab; --tinte-3: #7d8781;
+  --linie: #2d3530; --linie-2: #252c28;
+  --ok: #5dcc8b; --ok-bg: #16301f; --nein: #ff7d88; --nein-bg: #3b1b20; --markiert: #5a4512;
+  --sprache: #5fd08a; color-scheme: dark; }
+
+/* Sprachfarben (hell / dunkel) - gleich wie in der Grammatik-Sammlung */
+[data-sprache="englisch"] { --sprache: #1d7a3a; }
+[data-sprache="spanisch"] { --sprache: #c0262d; }
+[data-sprache="latein"] { --sprache: #6b3fa8; }
+[data-sprache="griechisch"] { --sprache: #1f5ea8; }
+[data-sprache="deutsch"] { --sprache: #8a5a00; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) [data-sprache="englisch"] { --sprache: #5fd08a; }
+  :root:not([data-theme="light"]) [data-sprache="spanisch"] { --sprache: #ff7b78; }
+  :root:not([data-theme="light"]) [data-sprache="latein"] { --sprache: #b99bea; }
+  :root:not([data-theme="light"]) [data-sprache="griechisch"] { --sprache: #7fb1f0; }
+  :root:not([data-theme="light"]) [data-sprache="deutsch"] { --sprache: #f0b54a; }
+}
+:root[data-theme="dark"] [data-sprache="englisch"] { --sprache: #5fd08a; }
+:root[data-theme="dark"] [data-sprache="spanisch"] { --sprache: #ff7b78; }
+:root[data-theme="dark"] [data-sprache="latein"] { --sprache: #b99bea; }
+:root[data-theme="dark"] [data-sprache="griechisch"] { --sprache: #7fb1f0; }
+:root[data-theme="dark"] [data-sprache="deutsch"] { --sprache: #f0b54a; }
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--grund); color: var(--tinte); font: 16px/1.6 var(--f-text); }
+[hidden] { display: none !important; }
+button { font: inherit; color: inherit; }
+a { color: var(--sprache); }
+:focus-visible { outline: 2px solid var(--sprache); outline-offset: 2px; }
+
+.kopf {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
+  display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
+  padding-block: 12px; padding-inline: max(16px, calc((100% - 760px) / 2));
+  background: color-mix(in srgb, var(--grund) 88%, transparent); backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--linie);
+}
+.marke { font-family: var(--f-titel); font-weight: 700; font-size: 20px; color: var(--tinte); text-decoration: none; }
+.pfad { font-size: 14px; color: var(--tinte-3); display: flex; gap: 6px; flex-wrap: wrap; }
+.pfad a { color: var(--tinte-2); text-decoration: none; }
+.blatt { max-width: 760px; margin: 0 auto; padding-block: 28px 70px; padding-inline: 16px; }
+.fuss { max-width: 760px; margin: 0 auto; padding: 18px 16px 40px; font-size: 13px; color: var(--tinte-3); border-top: 1px solid var(--linie); }
+
+h1 { font-family: var(--f-titel); font-weight: 700; font-size: clamp(32px, 6vw, 46px); line-height: 1.08; margin: 4px 0 10px; text-wrap: balance; }
+h2 { font-family: var(--f-titel); font-weight: 700; font-size: 24px; line-height: 1.2; margin: 34px 0 10px; text-wrap: balance; }
+h3 { font-family: var(--f-titel); font-weight: 700; font-size: 19px; margin: 0; text-wrap: balance; }
+p { max-width: 66ch; }
+.dach { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--sprache); font-weight: 700; }
+.lead { font-size: 18px; color: var(--tinte-2); margin: 0 0 18px; }
+.leise { color: var(--tinte-3); font-size: 14px; }
+mark { background: var(--markiert); color: inherit; border-radius: 2px; padding: 0 2px; }
+.en { font-style: italic; }
+
+/* Übersicht */
+.sprachgruppe { margin-top: 28px; }
+.sprachgruppe > h2 { margin: 0 0 10px; font-size: 15px; font-family: var(--f-text); letter-spacing: .1em; text-transform: uppercase; color: var(--sprache); }
+.formliste { display: grid; gap: 10px; }
+.formkarte {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 16px; align-items: center;
+  padding: 16px 18px; border-radius: 14px; background: var(--flaeche); border: 1px solid var(--linie);
+  text-decoration: none; color: var(--tinte);
+}
+.formkarte:hover { border-color: var(--sprache); }
+.formkarte .name { font-family: var(--f-titel); font-weight: 700; font-size: 20px; }
+.formkarte .de { color: var(--tinte-3); font-size: 14px; }
+.formkarte .info { grid-column: 1; color: var(--tinte-2); font-size: 14px; }
+.formkarte .stand { grid-row: 1 / span 2; grid-column: 2; text-align: right; font-size: 13px; color: var(--tinte-3); font-variant-numeric: tabular-nums; }
+.formkarte .stand b { display: block; font-size: 22px; color: var(--sprache); }
+.balken { height: 4px; border-radius: 2px; background: var(--linie-2); overflow: hidden; grid-column: 1 / -1; margin-top: 6px; }
+.balken i { display: block; height: 100%; background: var(--sprache); }
+.hinweisbox { margin-top: 30px; padding: 14px 16px; border-radius: 12px; background: var(--flaeche-2); border: 1px dashed var(--linie); font-size: 14px; color: var(--tinte-2); }
+
+/* Formseite */
+.reiter { display: flex; gap: 4px; border-bottom: 2px solid var(--linie); margin: 18px 0 8px; overflow-x: auto; }
+.reiter button {
+  border: 0; background: none; padding: 9px 14px; cursor: pointer; font-weight: 700; color: var(--tinte-3);
+  border-bottom: 3px solid transparent; margin-bottom: -2px; white-space: nowrap;
+}
+.reiter button[aria-selected="true"] { color: var(--tinte); border-bottom-color: var(--sprache); }
+.stapel { display: grid; gap: 14px; margin-top: 14px; }
+.zwei { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 14px; }
+.box { background: var(--flaeche); border: 1px solid var(--linie); border-radius: 12px; padding: 16px 18px; min-width: 0; }
+.box .etikett { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--sprache); font-weight: 700; margin-bottom: 4px; }
+.box ul { margin: 6px 0 0; padding-left: 20px; }
+.box li { margin: 3px 0; }
+.schritte { counter-reset: s; display: grid; gap: 10px; }
+.schritt { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 12px; background: var(--flaeche); border: 1px solid var(--linie); border-radius: 12px; padding: 14px 16px; }
+.schritt::before { counter-increment: s; content: counter(s); width: 30px; height: 30px; border-radius: 50%; background: var(--sprache); color: var(--flaeche); display: grid; place-items: center; font-weight: 700; }
+.schritt .etikett { font-weight: 700; }
+.tabrahmen { overflow-x: auto; border: 1px solid var(--linie); border-radius: 12px; background: var(--flaeche); }
+table { border-collapse: collapse; width: 100%; font-size: 15px; }
+th, td { text-align: left; vertical-align: top; padding: 9px 12px; border-bottom: 1px solid var(--linie-2); }
+th { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--tinte-3); }
+tr:last-child td { border-bottom: 0; }
+.wortwolke { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.wortwolke span { padding: 3px 10px; border-radius: 999px; background: var(--flaeche-2); border: 1px solid var(--linie); font-size: 14px; }
+.wortwolke span b { font-weight: 400; color: var(--tinte-3); margin-left: 4px; }
+
+/* Übungen */
+.uebung { background: var(--flaeche); border: 1px solid var(--linie); border-radius: 14px; padding: 18px clamp(14px, 3vw, 22px); margin-top: 18px; }
+.uebkopf { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.marke-klein { font-size: 12px; padding: 3px 10px; border-radius: 999px; background: var(--flaeche-2); color: var(--tinte-3); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.marke-klein.gut { background: var(--ok-bg); color: var(--ok); }
+.intro { color: var(--tinte-2); margin: 6px 0 0; font-size: 15px; }
+.aufgaben { list-style: none; margin: 12px 0 0; padding: 0; counter-reset: a; }
+.aufgabe { padding: 12px 0; border-top: 1px dashed var(--linie); }
+.aufgabe:first-child { border-top: 0; }
+.frage::before { counter-increment: a; content: counter(a) ". "; color: var(--tinte-3); font-weight: 700; }
+.optionen { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.option { border: 1.5px solid var(--linie); background: var(--flaeche-2); padding: 6px 14px; border-radius: 999px; cursor: pointer; text-align: left; line-height: 1.35; }
+.option:hover:not(:disabled) { border-color: var(--tinte); }
+.option:disabled { cursor: default; }
+.option.ok { border-color: var(--ok); background: var(--ok-bg); color: var(--ok); font-weight: 700; }
+.option.nein { border-color: var(--nein); background: var(--nein-bg); color: var(--nein); text-decoration: line-through; }
+.rueck { margin-top: 8px; padding: 8px 12px; border-radius: 8px; font-size: 15px; background: var(--flaeche-2); }
+.rueck.ok { background: var(--ok-bg); }
+.rueck.nein { background: var(--nein-bg); }
+.ergebnis { font-weight: 700; margin: 10px 0 0; }
+.ergebnis:empty { display: none; }
+.knoepfe { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+.knopf { border: 1.5px solid var(--tinte); background: transparent; padding: 8px 16px; border-radius: 9px; cursor: pointer; font-weight: 700; }
+.knopf.haupt { background: var(--tinte); color: var(--grund); }
+.knopf.leise { border-color: var(--linie); font-weight: 400; }
+.teile { display: grid; gap: 8px; margin-top: 10px; }
+.teil { display: block; width: 100%; text-align: left; border: 1.5px dashed var(--linie); background: var(--flaeche-2); border-radius: 10px; padding: 9px 12px; cursor: pointer; line-height: 1.45; }
+.gebaut { margin: 12px 0 0; padding-left: 24px; display: grid; gap: 8px; }
+.gebaut .teil { border-style: solid; border-color: var(--sprache); }
+.gebaut .teil.ok { border-color: var(--ok); background: var(--ok-bg); }
+.gebaut .teil.nein { border-color: var(--nein); background: var(--nein-bg); }
+.unterzeile { font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--tinte-3); margin-top: 14px; }
+
+/* Texte und Schreiben */
+.textwahl { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.textwahl button { border: 1.5px solid var(--linie); background: var(--flaeche); border-radius: 999px; padding: 5px 13px; cursor: pointer; font-size: 14px; }
+.textwahl button[aria-pressed="true"] { background: var(--sprache); border-color: var(--sprache); color: var(--flaeche); }
+.dokument { background: var(--flaeche); border: 1px solid var(--linie); border-radius: 6px; padding: 20px clamp(12px, 3vw, 24px); overflow-x: auto; margin-top: 14px; }
+.dokument .dkopf { font-size: 13px; color: var(--tinte-3); }
+.dokument .dtitel { font-family: var(--f-titel); font-weight: 700; font-size: 22px; margin: 2px 0 12px; }
+.zeile { display: grid; grid-template-columns: 2.4ch max-content; column-gap: 14px; white-space: pre; line-height: 1.8; font-size: 15.5px; }
+.zeile .nr { color: var(--tinte-3); text-align: right; font-size: 12px; font-variant-numeric: tabular-nums; padding-top: 2px; }
+.zeile.absatz { margin-top: .55em; }
+.fliesstext p { margin: 0 0 10px; }
+.auftrag { margin-top: 14px; padding: 14px 16px; border-radius: 12px; background: var(--flaeche); border: 1.5px solid var(--sprache); }
+.auftrag .etikett { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--sprache); font-weight: 700; }
+textarea.schreibfeld { width: 100%; min-height: 320px; margin-top: 12px; font: inherit; font-size: 16px; line-height: 1.6; color: var(--tinte); background: var(--flaeche); border: 1.5px solid var(--linie); border-radius: 10px; padding: 14px; resize: vertical; }
+textarea.kurz { min-height: 110px; }
+.zaehler { font-variant-numeric: tabular-nums; color: var(--tinte-3); font-size: 14px; margin-top: 6px; }
+.pruefliste { list-style: none; padding: 0; margin: 8px 0 0; display: grid; gap: 6px; font-size: 15px; }
+.pruefliste li { display: grid; grid-template-columns: 22px 1fr; gap: 6px; }
+.pruefliste .ja b { color: var(--ok); }
+.pruefliste .nein b { color: var(--nein); }
+.muster { margin-top: 12px; padding: 14px 16px; border-radius: 10px; background: var(--flaeche-2); border-left: 3px solid var(--sprache); white-space: pre-line; line-height: 1.65; }
+.haken label { display: flex; gap: 8px; align-items: flex-start; padding: 3px 0; cursor: pointer; }
+.haken input { margin-top: 6px; accent-color: var(--sprache); }
+@media (max-width: 480px) { .zeile { font-size: 13.5px; column-gap: 10px; } }
