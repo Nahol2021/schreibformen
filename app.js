@@ -220,7 +220,7 @@ function schreibAufgabe(form, text, zeilen) {
     h("div", { class: "uebkopf" }, h("div", {}, h("div", { class: "dach" }, "Schreibaufgabe"), h("h3", {}, text.aufgabeTitel || "Schreiben")),
       h("span", { class: "marke-klein" + (s ? " gut" : "") }, s ? "mit Muster verglichen" : "noch offen")),
     h("div", { class: "auftrag" }, h("div", { class: "etikett" }, "Aufgabe"), h("div", { html: fmt(text.aufgabe, zeilen) })),
-    feld, zaehler, h("div", { class: "unterzeile" }, "Prüfliste (zählt beim Schreiben mit)"), liste, haken,
+    feld, zaehler, h("div", { class: "unterzeile" }, "Prüfliste – zählt beim Schreiben mit"), liste, haken,
     h("div", { class: "knoepfe" }, h("button", { class: "knopf haupt", type: "button", onclick() {
       muster.hidden = !muster.hidden; this.textContent = muster.hidden ? "Musterlösung zeigen" : "Musterlösung ausblenden";
       if (!muster.hidden) { merke(id, 1, 1); this.closest(".uebung").querySelector(".marke-klein").className = "marke-klein gut"; this.closest(".uebung").querySelector(".marke-klein").textContent = "mit Muster verglichen"; }
@@ -242,8 +242,7 @@ function uebersicht() {
   pfad.innerHTML = "";
   main.removeAttribute("data-sprache");
   main.innerHTML = "";
-  main.append(h("div", { class: "dach", style: "color:var(--tinte-3)" }, "Johans Sammlung"),
-    h("h1", {}, "Schreibformen"),
+  main.append(h("h1", {}, "Schreibformen"),
     h("p", { class: "lead" }, "Jede Schreibform einmal richtig lernen und dann mit immer neuen Texten üben. Mit jeder Klassenarbeit kommen Texte oder neue Formen dazu."));
   const sprachen = [...new Set(FORMEN.map(f => f.sprache))];
   sprachen.forEach(sp => {
