@@ -242,7 +242,7 @@ function uebersicht() {
   pfad.innerHTML = "";
   main.removeAttribute("data-sprache");
   main.innerHTML = "";
-  main.append(h("h1", {}, "Schreibformen"),
+  main.append(
     h("p", { class: "lead" }, "Jede Schreibform einmal richtig lernen und dann mit immer neuen Texten üben. Mit jeder Klassenarbeit kommen Texte oder neue Formen dazu."));
   const sprachen = [...new Set(FORMEN.map(f => f.sprache))];
   sprachen.forEach(sp => {
@@ -252,7 +252,7 @@ function uebersicht() {
       const p = formStand(f);
       liste.append(h("a", { class: "formkarte", href: "#" + f.id },
         h("div", {}, h("span", { class: "name" }, f.name), " ", h("span", { class: "de" }, f.deutsch)),
-        h("div", { class: "stand" }, h("b", {}, p + " %"), "geübt"),
+        h("div", { class: "stand" }, h("b", {}, p + " %"), " geübt"),
         h("div", { class: "info" }, `${f.kurz} · ${(f.texte || []).length} Übungstext${(f.texte || []).length === 1 ? "" : "e"} · ${f.seit}`),
         h("div", { class: "balken" }, h("i", { style: "width:" + p + "%" }))));
     });
@@ -265,11 +265,10 @@ function uebersicht() {
 function formSeite(form, reiter, textId) {
   main.setAttribute("data-sprache", form.sprache);
   pfad.innerHTML = "";
-  pfad.append(h("span", {}, "›"), h("span", {}, SPRACHNAME[form.sprache] || form.sprache), h("span", {}, "›"), h("a", { href: "#" + form.id }, form.deutsch));
+  pfad.append(h("a", { href: "#" }, "← alle Schreibformen"));
   main.innerHTML = "";
-  main.append(h("div", { class: "dach" }, (SPRACHNAME[form.sprache] || "") + " · " + form.seit),
-    h("h1", {}, form.name), h("p", { class: "lead" }, form.kurz));
-  const tabs = [["anleitung", "Anleitung"], ["ueben", "Üben"], ["schreiben", "Mit Texten üben"]];
+  main.append(h("h1", {}, form.name + " (" + (SPRACHNAME[form.sprache] || "") + ")"), h("p", { class: "lead" }, form.kurz));
+  const tabs = [["anleitung", "Anleitung"], ["ueben", "Üben"], ["schreiben", "Texte"]];
   main.append(h("div", { class: "reiter", role: "tablist" }, tabs.map(([k, l]) => h("button", { type: "button", role: "tab", "aria-selected": String(k === reiter), onclick() { location.hash = form.id + (k === "anleitung" ? "" : "." + k); } }, l))));
   const inhalt = h("div"); main.append(inhalt);
   if (reiter === "anleitung") inhalt.append(anleitung(form));
