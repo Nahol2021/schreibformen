@@ -17,14 +17,14 @@ SCHREIBFORMEN.push({
    { "etikett": "Frage zurück und Gruß", "html": "<i>¿Y tú? ¿Qué haces por la tarde?</i> · <i>¡Hasta luego!</i>" } ] },
   { "typ": "karten", "titel": "Darauf achten", "items": [
    { "etikett": "Typische Fehler", "html": "<ul><li><s>Soy 14 años</s> → <b>Tengo</b> 14 años</li><li><s>Hay el cine</s> → Hay <b>un</b> cine</li><li><s>Hablo Alemán</s> → Sprachen <b>klein</b>: alemán</li><li>Frage ohne <b>¿</b> am Anfang</li></ul>" },
-   { "etikett": "Besser klingen", "html": "<ul><li>Sätze verbinden: <i>y</i>, <i>pero</i></li><li>Häufigkeit einbauen: <i>siempre, a veces</i></li><li>Reagieren: <i>¡Qué guay!</i>, <i>¡Genial!</i></li><li>Andere vorstellen: <i>Este es … / Esta es …</i>, <i>Se llama …</i></li></ul>" } ] },
+   { "etikett": "Besser klingen", "html": "<ul><li>Sätze verbinden: <i>y</i>, <i>pero</i>, <i>también</i>, <i>además</i></li><li>Häufigkeit einbauen: <i>siempre, normalmente, a veces</i></li><li>Reagieren: <i>¡Qué guay!</i>, <i>¡Genial!</i></li><li>Andere vorstellen: <i>Este es … / Esta es …</i>, <i>Se llama …</i></li></ul>" } ] },
   { "typ": "tabelle", "titel": "Redemittel", "kopf": ["Wofür", "Spanisch"], "zeilen": [
    ["Name", "Me llamo … · Soy … · (er/sie) se llama …"],
    ["Alter", "Tengo … años · (er/sie) tiene … años"],
    ["Herkunft", "Soy de … · (er/sie) es de …"],
    ["Sprachen", "Hablo … · (er/sie) habla …"],
    ["Wohnort", "Vivo en … · En mi barrio hay …"],
-   ["Nachmittag", "Por la tarde … · siempre · a veces · quedo con mis amigos"],
+   ["Nachmittag", "Por la tarde … · siempre · normalmente · a veces · quedo con mis amigos · leo cómics · chateo"],
    ["Andere vorstellen", "Este es mi amigo … · Esta es mi amiga …"] ] }
  ],
  "uebungen": [
@@ -52,7 +52,7 @@ SCHREIBFORMEN.push({
   { "art": "enthaelt", "muster": "soy de ", "label": "Herkunft (Soy de …)" },
   { "art": "enthaelt", "muster": "hablo ", "label": "Sprachen (Hablo …)" },
   { "art": "enthaelt", "muster": "(vivo en|hay )", "label": "Wohnort oder Viertel (Vivo en … / hay …)" },
-  { "art": "enthaelt", "muster": "(siempre|a veces|todos los días|nunca)", "label": "Häufigkeit (siempre, a veces …)" },
+  { "art": "enthaelt", "muster": "(siempre|normalmente|a veces|todos los días|nunca)", "label": "Häufigkeit (siempre, normalmente, a veces …)" },
   { "art": "enthaelt", "muster": "¿[^?]+\\?", "label": "Eine Frage mit ¿ … ?" },
   { "art": "enthaelt", "muster": "(adiós|hasta luego)", "label": "Gruß am Ende" },
   { "art": "nicht", "muster": "soy \\S+ años", "label": "Kein „soy … años“ (Alter mit tengo)" },
